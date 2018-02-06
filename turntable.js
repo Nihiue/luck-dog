@@ -78,7 +78,7 @@ class Turntable {
     }
   }
   drawSub(isActive) {
-    const colorMap = isActive ? ['rgba(255,255,255,0.8)', '#ff0000', '#f44336'] : ['rgba(255,255,255,0.6)', '#f44336', '#fff'];
+    const colorMap = isActive ? ['rgba(255,255,255,0.8)', '#fa6800', '#fff'] : ['rgba(255,255,255,0.6)', '#f44336', '#fff'];
     const ctx = this.subCtx;
     ctx.clearRect(0, 0, this.width, this.height);
 
@@ -150,7 +150,7 @@ class Turntable {
       const delta = (timestamp - lastUpdate) / 16;
       lastUpdate = timestamp;
       pos = Math.round(pos + 100 * delta * speed) % 36000;
-      speed = speed - delta * 4 * (1.003 - easeOutCubic(1 - speed / 50));
+      speed = speed - delta * 4 * (1.002 - easeOutCubic(1 - speed / 50));
       self.setRotate(pos);
       if (speed > 0.005) {
         window.requestAnimationFrame(onRequestFrame);

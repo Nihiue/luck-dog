@@ -5,7 +5,11 @@ var app = new Vue({
   data: function () {
     return {
       spaceKeyStart: 0,
-      userList: [],
+      userList: [{
+        label: 'test',
+        weight: 1,
+        id: 'test'
+      }],
       resultList: [],
       toastText: '',
       showToast: false
@@ -31,15 +35,16 @@ var app = new Vue({
         self.toast(`WINNER: ${val.label}`);
       };
       document.addEventListener('keyup', function (e) {
-        if (e.keyCode !== 32 || self.turntable.isRunning || e.target !== document.body) {
+        if (e.keyCode !== 32 || self.turntable.isRunning || e.target !== document.body || self.spaceKeyStart === 0) {
           return;
         }
         const speed = Math.round((Date.now() - self.spaceKeyStart) * 0.04);
+        self.spaceKeyStart = 0;
         self.turntable.drawSub(false);
         self.turntable.spin(speed);
       });
       document.addEventListener('keydown', function (e) {
-        if (e.keyCode !== 32 || e.repeat || self.turntable.isRunning || e.target !== document.body) {
+        if (e.keyCode !== 32 || e.repeat || self.turntable.isRunning || e.target !== document.body || self.spaceKeyStart !== 0) {
           return;
         }
         self.turntable.drawSub(true);
