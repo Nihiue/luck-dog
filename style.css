@@ -5,48 +5,58 @@ body {
 }
 
 .layout-container {
-  width: 100%;
   display: flex;
   margin: 0 auto;
+  max-width: 100%;
 }
 
+#app.not-ready {
+  visibility: hidden;
+}
 .image-area {
+  margin: auto;
   position: relative;
   overflow: hidden;
-  width: 1000px;
-  height: 1000px;
   flex-grow: 0;
   flex-shrink: 0;
 }
 
+
 .image-area canvas {
   position: absolute;
 }
+#sub-canvas {
+  z-index: 5;
+}
 
 .table-area {
-  padding: 30px;
+  padding: 30px 10px;
   min-height: 300px;
   flex-grow: 1;
   flex-shrink: 1;
-  max-height: 100vh;
-  overflow: auto;
+  flex-basis: 250px;
 }
-
+.table-wrapper {
+  overflow: auto;
+  padding: 20px;
+  max-height: 80vh;
+}
 .toast {
+  border-radius: 4px;
   position: fixed;
   background: #e74c3c;
   text-align: center;
-  font-size: 64px;
-  color: #f1c40f;
-  width: 800px;
-  right: 30px;
-  line-height: 160px;
-  height: 160px;
-  top: 30px;
+  font-size: 54px;
+  color: #f7de7e;
+  width: 750px;
+  right: 50px;
+  line-height: 140px;
+  height: 140px;
+  top: 50px;
 }
 
 .slide-fade-enter-active {
-  transition: all .8s ease;
+  transition: all 0.8s ease;
 }
 
 .slide-fade-leave-active {
@@ -57,4 +67,24 @@ body {
 .slide-fade-leave-to {
   transform: translateX(800px);
   opacity: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .layout-container {
+    display: block;
+  }
+  .table-wrapper {
+    font-size: 12px;
+    padding: 10px 0;
+    max-height: initial;
+  }
+  .toast {
+    font-size: 24px;
+    width: 90vw;
+    height: 60px;
+    line-height: 60px;
+    left: 5vw;
+    top: auto;
+    bottom: 20vh;
+  }
 }
